@@ -1844,7 +1844,7 @@ Usage (In Ghost editor):
 }
 
 .post-template .post-content > p:first-child {
-    font-size: 1.25em;
+    font-size: 0.9em;
     line-height: 1.5em;
 }
 

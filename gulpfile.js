@@ -1,12 +1,14 @@
-const {series, watch, src, dest} = require('gulp');
+const {series, watch, src, dest, parallel} = require('gulp');
 const pump = require('pump');
 
 // gulp plugins and utils
 const livereload = require('gulp-livereload');
 const postcss = require('gulp-postcss');
 const zip = require('gulp-zip');
+const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const beeper = require('beeper');
+const fs = require('fs');
 
 // postcss plugins
 const autoprefixer = require('autoprefixer');
@@ -29,12 +31,19 @@ const handleError = (done) => {
     };
 };
 
+function hbs(done) {
+    pump([
+        src(['*.hbs', 'partials/**/*.hbs']),
+        livereload()
+    ], handleError(done));
+}
+
 function css(done) {
     const processors = [
         easyimport,
         customProperties({preserve: false}),
         colorFunction(),
-        autoprefixer({browsers: ['last 2 versions']}),
+        autoprefixer(),
         cssnano()
     ];
 
@@ -46,26 +55,14 @@ function css(done) {
     ], handleError(done));
 }
 
-function highlightCss(done) {
-    const processors = [
-        easyimport,
-        customProperties({preserve: false}),
-        colorFunction(),
-        autoprefixer({browsers: ['last 2 versions']}),
-        cssnano()
-    ];
-
-    pump([
-        src('assets/css/highlight-styles/*.css', {sourcemaps: true}),
-        postcss(processors),
-        dest('assets/built/highlight-styles/', {sourcemaps: '.'}),
-        livereload()
-    ], handleError(done));
-}
-
 function js(done) {
     pump([
-        src('assets/js/*.js', {sourcemaps: true}),
+        src([
+            // pull in lib files first so our own code can depend on it
+            'assets/js/lib/*.js',
+            'assets/js/*.js'
+        ], {sourcemaps: true}),
+        concat('casper.js'),
         uglify(),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
@@ -88,8 +85,10 @@ function zipper(done) {
     ], handleError(done));
 }
 
-const watcher = () => watch('assets/css/**', css);
-const build = series(css, highlightCss, js);
+const cssWatcher = () => watch('assets/css/**', css);
+const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs'], hbs);
+const watcher = parallel(cssWatcher, hbsWatcher);
+const build = series(css, js);
 const dev = series(build, serve, watcher);
 
 exports.build = build;
@@ -107,7 +106,7 @@ try {
     config = null;
 }
 
-const REPO = 'shangbo/Casper';
+const REPO = 'TryGhost/Casper';
 const USER_AGENT = 'Casper';
 const CHANGELOG_PATH = path.join(process.cwd(), '.', 'changelog.md');
 
@@ -138,9 +137,9 @@ const previousRelease = () => {
                 console.log('No releases found. Skipping');
                 return;
             }
-
-            console.log(`Previous version ${response[0].name}`);
-            return response[0].name;
+            let prevVersion = response[0].tag_name || response[0].name;
+            console.log(`Previous version ${prevVersion}`);
+            return prevVersion;
         });
 };
 
@@ -160,7 +159,9 @@ const previousRelease = () => {
  */
 const release = () => {
     // @NOTE: https://yarnpkg.com/lang/en/docs/cli/version/
-    const newVersion = process.env.npm_package_version;
+    // require(./package.json) can run into caching issues, this re-reads from file everytime on release
+    var packageJSON = JSON.parse(fs.readFileSync('./package.json'));
+    const newVersion = packageJSON.version;
     let shipsWithGhost = '{version}';
     let compatibleWithGhost = '2.10.0';
     const ghostEnvValues = process.env.GHOST || null;
@@ -187,8 +188,7 @@ const release = () => {
     }
 
     return previousRelease()
-        .then((previousVersion)=> {
-
+        .then((previousVersion) => {
             changelog({previousVersion});
 
             return releaseUtils
@@ -207,7 +207,7 @@ const release = () => {
                     content: [`**Ships with Ghost ${shipsWithGhost} Compatible with Ghost >= ${compatibleWithGhost}**\n\n`],
                     changelogPath: CHANGELOG_PATH
                 })
-                .then((response)=> {
+                .then((response) => {
                     console.log(`\nRelease draft generated: ${response.releaseUrl}\n`);
                 });
         });

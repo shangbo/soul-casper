@@ -1,5 +1,5 @@
-<nav class="site-nav">
-    <div class="site-nav-left">
+<nav class="site-nav" {{#if position}}style="background:#090a0b;"{{/if}}>
+    <div class="site-nav-left" {{#if position}}style="margin-left:0;"{{/if}}>
         {{#if @site.logo}}
             <a class="site-nav-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a>
         {{else}}
@@ -14,15 +14,15 @@
             {{/is}}
         </div>
     </div>
-    <div class="site-nav-right">
-        <div class="social-links">
-            {{#if @site.facebook}}
+    <div class="site-nav-right" {{#if position}}style="margin-right:0;"{{/if}}>
+        {{!-- <div class="social-links"> --}}
+            {{!-- {{#if @site.facebook}}
                 <a class="social-link social-link-fb" href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
             {{/if}}
             {{#if @site.twitter}}
                 <a class="social-link social-link-tw" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
-            {{/if}}
-        </div>
+            {{/if}} --}}
+        {{!-- </div> --}}
         {{#if @labs.members}}
             <a class="subscribe-button" href="#subscribe">Subscribe</a>
         {{else}}

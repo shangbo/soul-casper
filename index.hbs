@@ -3,9 +3,10 @@
 into the {body} of the default.hbs template --}}
 
 <header class="site-home-header">
-    {{> header-background background=@site.cover_image}} {{!--Special header-image.hbs partial to generate the background image--}}
+    {{> header-background background=@site.cover_image}} 
+    {{> "site-nav"}}
+    {{!--Special header-image.hbs partial to generate the background image--}}
         <div class="inner">
-            {{> "site-nav"}}
             <div class="site-header-content">
                 <h1 class="site-title">
                     {{#if @site.logo}}
@@ -81,8 +82,13 @@ into the {body} of the default.hbs template --}}
             // show/hide nav
             if (lastScrollY >= trigger - 20) {
                 nav.classList.add('fixed-nav-active');
+                $($(nav).find('.site-nav-left')[0]).css('margin-left','0');
+                $($(nav).find('.site-nav-right')[0]).css('margin-right','0');
             } else {
                 nav.classList.remove('fixed-nav-active');
+                $($(nav).find('.site-nav-left')[0]).css('margin-left','15%');
+                $($(nav).find('.site-nav-right')[0]).css('margin-right','10%');
+                
             }
 
             ticking = false;

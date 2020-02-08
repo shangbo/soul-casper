@@ -53,6 +53,22 @@ function css(done) {
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));
+    
+    pump([
+        src('assets/css/highlightjs/*.css', {sourcemaps: true}),
+        postcss(processors),
+        dest('assets/built/highlightjs/', {sourcemaps: '.'}),
+        livereload()
+    ], handleError(done));
+}
+
+function fonts(done) {
+    pump([
+        src('assets/fonts/*', {sourcemaps: true}),
+        dest('assets/built/fonts', {sourcemaps: '.'}),
+        livereload()
+    ], handleError(done));
+
 }
 
 function js(done) {
@@ -88,7 +104,7 @@ function zipper(done) {
 const cssWatcher = () => watch('assets/css/**', css);
 const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs'], hbs);
 const watcher = parallel(cssWatcher, hbsWatcher);
-const build = series(css, js);
+const build = series(css, js, fonts);
 const dev = series(build, serve, watcher);
 
 exports.build = build;

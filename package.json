@@ -2,7 +2,7 @@
     "name": "soul-casper",
     "description": "A clean, minimal default theme for the Ghost publishing platform, based on capser themes",
     "demo": "https://demo.ghost.io",
-    "version": "3.0.3-1-soul",
+    "version": "3.1.0-soul",
     "engines": {
         "ghost": ">=3.0.0",
         "ghost-api": "v3"
@@ -51,7 +51,7 @@
         "beeper": "2.0.0",
         "cssnano": "4.1.10",
         "gscan": "3.1.1",
-        "gulp": "4.0.2",
+        "gulp": "^4.0.2",
         "gulp-concat": "^2.6.1",
         "gulp-livereload": "4.0.2",
         "gulp-postcss": "8.0.0",
@@ -66,7 +66,7 @@
         "defaults"
     ],
     "config": {
-        "posts_per_page": 25,
+        "posts_per_page": 5,
         "image_sizes": {
             "xxs": {
                 "width": 30
@@ -87,5 +87,8 @@
                 "width": 2000
             }
         }
+    },
+    "dependencies": {
+        "verbose": "^0.2.3"
     }
 }

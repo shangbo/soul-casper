@@ -68,13 +68,19 @@ body {
 /* Full width page blocks */
 .outer {
     position: relative;
-    padding: 0 5vw;
+    padding: 0;
 }
 
 /* Centered content container blocks */
 .inner {
-    margin: 0 auto;
+    margin: 0 auto; 
     max-width: 1040px;
+    width: 100%;
+}
+
+.post-inner{
+    margin: 0 auto; 
+    max-width: 1400px;
     width: 100%;
 }
 
@@ -282,7 +288,8 @@ body {
     align-items: flex-start;
     overflow-y: hidden;
     height: 64px;
-    font-size: 1.3rem;
+    font-size: 1.7rem;
+    background-color: #191b1f;
 }
 
 .site-nav-left {
@@ -290,6 +297,7 @@ body {
     display: flex;
     align-items: center;
     overflow-x: auto;
+    margin-left:15%;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     margin-right: 10px;
@@ -358,7 +366,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .site-home-header .site-nav-logo {
-    display: none;
+    /* display: none; */
 }
 
 .site-nav-content {
@@ -453,6 +461,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     align-items: center;
     padding: 10px 0;
     height: 64px;
+    margin-right: 10%;
 }
 
 .social-links {
@@ -542,6 +551,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 .home-template .site-nav-main .fixed-nav-active {
     opacity: 1;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.05s;
+    background-color: #090a0b;
 }
 
 @media (max-width: 700px) {
@@ -656,10 +666,16 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     flex-direction: column;
 }
 
+.post-card-content-index {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .post-card-excerpt {
     max-width: 56em;
     color: var(--midgrey);
-    font-family: Georgia, serif;
+    font-family: Helvetica, sans-serif;
 }
 
 .post-card-excerpt p {
@@ -670,6 +686,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     display: flex;
     align-items: flex-start;
     padding: 0;
+    margin-top: 1em;
 }
 
 .author-profile-image,
@@ -839,15 +856,16 @@ make sure this only happens on large viewports / desktop-ish devices.
     .post-card-large .post-card-content {
         flex: 0 1 361px;
         justify-content: center;
+        margin-left: 1.7em;
     }
 
     .post-card-large .post-card-title {
         margin-top: 0;
-        font-size: 3.2rem;
+        font-size: 3rem;
     }
 
     .post-card-large .post-card-content-link {
-        padding: 0 0 0 40px;
+        /* padding: 0 0 0 40px; */
     }
 
     .post-card-large .post-card-meta {
@@ -856,7 +874,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 
     .post-card-large .post-card-excerpt p {
         margin-bottom: 1.5em;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         line-height: 1.5em;
     }
 }
@@ -877,6 +895,8 @@ make sure this only happens on large viewports / desktop-ish devices.
     .post-card {
         margin-bottom: 5vw;
     }
+
+    
 }
 
 @media (max-width: 500px) {
@@ -903,12 +923,13 @@ make sure this only happens on large viewports / desktop-ish devices.
 .post-full-header {
     position: relative;
     margin: 0 auto;
-    padding: 70px 170px 50px;
+    padding: 70px 170px 20px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
 
 .post-full-tags {
+    margin-top: 1.5em;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -952,7 +973,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 .post-full-custom-excerpt {
     margin: 20px 0 0;
     color: var(--midgrey);
-    font-family: Georgia, serif;
+    font-family: Helvetica, sans-serif;
     font-size: 2.3rem;
     line-height: 1.4em;
     font-weight: 300;
@@ -983,12 +1004,13 @@ make sure this only happens on large viewports / desktop-ish devices.
 .post-full-content {
     position: relative;
     margin: 0 auto;
-    padding: 0 170px 6vw;
+    padding: 0 170px 2vw;
     min-height: 230px;
-    font-family: Georgia, serif;
-    font-size: 2.0rem;
-    line-height: 1.6em;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.7rem;
+    line-height: 1.6em;@font-face
     background: #fff;
+    /* border-top: 1px solid color(var(--lightgrey) l(+30%)); */
 }
 
 @media (max-width: 1170px) {
@@ -1032,7 +1054,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 .post-full-content blockquote,
 .post-full-comments,
 .footnotes {
-    margin: 0 0 1.5em 0;
+    margin: 0 0 0.3em 0;
     min-width: 100%;
 }
 @media (max-width: 500px) {
@@ -1157,11 +1179,24 @@ Usage (In Ghost editor):
 
 .post-full-content code {
     padding: 0 5px 2px;
-    font-size: 0.8em;
+    font-size: 1em;
     line-height: 1em;
     font-weight: 400!important;
-    background: var(--whitegrey);
+    background: #282a36;
     border-radius: 3px;
+}
+
+.tag-name {
+    background-color: #282a36;
+    color: aliceblue;
+    font-size: 1em;
+    border-radius: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 0.2em;
+
 }
 
 .post-full-content p code {
@@ -1170,14 +1205,17 @@ Usage (In Ghost editor):
 
 .post-full-content pre {
     overflow-x: auto;
-    margin: 1.5em 0 3em;
-    padding: 20px;
+    margin: 1em 0 1em;
+    padding-left: 20px;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
     max-width: 100%;
-    border: color(var(--darkgrey) l(-10%)) 1px solid;
+    /* border: color(var(--darkgrey) l(-10%)) 1px solid; */
     color: var(--whitegrey);
-    font-size: 1.4rem;
-    line-height: 1.5em;
-    background: color(var(--darkgrey) l(-3%));
+    font-size: 1.7rem;
+    /* line-height: 0.2em; */
+    /* background: color(var(--darkgrey) l(-3%)); */
     border-radius: 5px;
 }
 
@@ -1186,7 +1224,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content pre code {
-    padding: 0;
+    padding: 0px;
     font-size: inherit;
     line-height: inherit;
     background: transparent;
@@ -1201,7 +1239,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content hr {
-    margin: 2em 0;
+    margin: 0.5em 0;
 }
 
 .post-full-content hr:after {
@@ -1229,7 +1267,7 @@ Usage (In Ghost editor):
 .post-full-content h5,
 .post-full-content h6 {
     color: color(var(--darkgrey) l(-5%));
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: Helvetica, sans-serif;
 }
 
 .post-full-content h1 {
@@ -1307,7 +1345,7 @@ Usage (In Ghost editor):
     padding: 0.4em 1em 0.9em;
     border: 0;
     color: var(--blue);
-    font-family: Georgia,serif;
+    font-family: Helvetica, sans-serif;
     font-size: 3.2rem;
     line-height: 1.35em;
     text-align: center;
@@ -1386,7 +1424,7 @@ Usage (In Ghost editor):
 
     .post-full-title {
         margin-top: 0.2em;
-        font-size: 3.3rem;
+        font-size: 2.8rem;
     }
 
     .post-full-image {
@@ -1413,7 +1451,7 @@ Usage (In Ghost editor):
     width: auto;
     border-spacing: 0;
     border-collapse: collapse;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: Helvetica, sans-serif;
     font-size: 1.6rem;
     white-space: nowrap;
     vertical-align: top;
@@ -1463,9 +1501,11 @@ Usage (In Ghost editor):
 .post-full-byline {
     display: flex;
     justify-content: space-between;
-    margin: 35px 0 0;
-    padding-top: 15px;
-    border-top: 1px solid color(var(--lightgrey) l(+10%));
+    margin: 20px 0 0;
+    /* padding-top: 15px; */
+    padding-left: 170px;
+    padding-right: 170px;
+    /* border-top: 1px solid color(var(--lightgrey) l(+10%)); */
 }
 
 .post-full-byline-content {
@@ -2032,6 +2072,8 @@ Usage (In Ghost editor):
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
 }
 
 .post-full-content .kg-image {
@@ -2069,7 +2111,7 @@ Usage (In Ghost editor):
 .post-full-content figcaption {
     margin: 1.0em 0 0;
     color: color(var(--midgrey) l(-10%));
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: Helvetica, sans-serif;
     font-size: 75%;
     line-height: 1.5em;
     text-align: center;;
@@ -2154,7 +2196,7 @@ Usage (In Ghost editor):
     display: flex;
     min-height: 148px;
     color: var(--darkgrey);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: Helvetica, sans-serif;
     text-decoration: none;
     border-radius: 3px;
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.09);
@@ -2653,7 +2695,7 @@ Usage (In Ghost editor):
     margin: 0 auto 50px;
     max-width: 650px;
     color: #fff;
-    font-family: Georgia, serif;
+    font-family: Helvetica, sans-serif;
     font-size: 2.4rem;
     line-height: 1.3em;
     font-weight: 300;
@@ -2915,7 +2957,7 @@ Usage (In Ghost editor):
 
     .post-full-content code {
         color: #fff;
-        background: #000;
+        /* background: #000; */
     }
 
     hr {

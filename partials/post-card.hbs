@@ -1,5 +1,14 @@
 <article class="post-card {{post_class}} {{#unless feature_image}}no-image{{else}}{{#is "home"}}{{#has index="nth:6"}}post-card-large{{/has}}{{/is}}{{/unless}}">
-
+    {{#if from}}
+        <div class="post-card-content">
+            {{#if next}}
+                <a class="post-card-content-link" href="{{url}}"><h2 class="post-card-title">下一篇 - {{title}}</h2></a>
+            {{/if}}
+            {{#if prev}}
+                <a class="post-card-content-link" href="{{url}}"><h2 class="post-card-title">上一篇 - {{title}}</h2></a>
+            {{/if}}
+        </div>
+    {{/if}}
     {{#if feature_image}}
     <a class="post-card-image-link" href="{{url}}">
         {{!-- This is a responsive image, it loads different sizes depending on device
@@ -16,30 +25,36 @@
     </a>
     {{/if}}
 
-    <div class="post-card-content">
-
-        <a class="post-card-content-link" href="{{url}}">
+    
+    {{#if from}}
+        <header class="post-card-header">
+            {{#foreach tags}}
+                <a class='tag-name' href="{{url}}">{{name}}</a>
+            {{/foreach}}
+        </header>
+    {{else}}
+    <div class="post-card-content" >
 
             <header class="post-card-header">
-                {{#if primary_tag}}
-                    {{#primary_tag}}
-                    <div class="post-card-primary-tag">{{name}}</div>
-                    {{/primary_tag}}
-                {{/if}}
-                <h2 class="post-card-title">{{title}}</h2>
+                <a class="post-card-content-link" href="{{url}}"><h2 class="post-card-title">{{title}}</h2></a>
             </header>
-
             <section class="post-card-excerpt">
+                
                 {{#if feature_image}}
-                    <p>{{excerpt words="30"}}</p>
+                    <p>文章简介 <span class="bull">&bull;</span> {{excerpt words="30"}}</p>
                 {{else}}
-                    <p>{{excerpt words="44"}}</p>
+                    <p>文章简介 <span class="bull">&bull;</span> {{excerpt words="44"}}</p>
                 {{/if}}
             </section>
+            {{#if tags}}
+                <header class="post-card-header" >
+                {{#foreach tags}}
+                    <a class='tag-name' href="{{url}}">{{name}}</a>
+                {{/foreach}}
+                </header>
+            {{/if}}
 
-        </a>
-
-        <footer class="post-card-meta">
+        <footer class="post-card-meta" style="padding-left: 0px;">
             <ul class="author-list">
                 {{#foreach authors}}
                 <li class="author-list-item">
@@ -58,12 +73,14 @@
                 </li>
                 {{/foreach}}
             </ul>
-            <div class="post-card-byline-content">
-                <span>{{#has author="count:>2"}}Multiple authors{{else}}{{authors}}{{/has}}</span>
-                <span class="post-card-byline-date"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span> {{reading_time}}</span>
+            <div class="post-card-byline-content" style="margin-top: 0.8em;">
+                <span>{{#has author="count:>2"}}多个作者{{else}}{{authors}}{{/has}}</span>
+                <span class="post-card-byline-date">更新时间 - <time datetime="{{date updated_at format="YYYY-MM-DD"}}">{{date updated_at format="YYYY-MM-DD"}}</time> 
             </div>
         </footer>
 
     </div>{{!--/.post-card-content--}}
+    {{/if}}
+
 
 </article>

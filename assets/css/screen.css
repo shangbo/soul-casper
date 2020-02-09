@@ -3142,7 +3142,7 @@ Usage (In Ghost editor):
     }
 
     .tag-name {
-        background-color: var(--darkmode);
+        background-color: #282a36;
         color: rgb(255, 255, 255);
         font-size: 1em;
         border-radius: 3px;

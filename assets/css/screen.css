@@ -630,6 +630,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-header {
+    overflow: hidden;
     margin: 15px 0 0;
 }
 
@@ -926,13 +927,14 @@ make sure this only happens on large viewports / desktop-ish devices.
     padding: 70px 170px 20px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+    overflow: hidden;
 }
 
 .post-full-tags {
     margin-top: 1.5em;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: flex-start; */
+    /* align-items: center; */
     color: var(--midgrey);
     font-size: 1.3rem;
     line-height: 1.4em;
@@ -1065,7 +1067,7 @@ make sure this only happens on large viewports / desktop-ish devices.
     .post-full-content pre,
     .post-full-comments,
     .footnotes {
-        margin-bottom: 1.28em;
+        margin-bottom: 0.9em;
     }
 }
 
@@ -1179,16 +1181,18 @@ Usage (In Ghost editor):
 
 .post-full-content code {
     padding: 0 5px 2px;
-    font-size: 1em;
+    font-size: 0.9em;
     line-height: 1em;
     font-weight: 400!important;
-    background: #282a36;
+    background: #173150;
+    color: #fff;
     border-radius: 3px;
+    padding-top: 0.25em;
 }
 
 .tag-name {
-    background-color: #282a36;
-    color: aliceblue;
+    background-color: #173150;
+    color: rgb(255, 255, 255);
     font-size: 1em;
     border-radius: 3px;
     padding-top: 5px;
@@ -1196,8 +1200,11 @@ Usage (In Ghost editor):
     padding-left: 10px;
     padding-right: 10px;
     margin-right: 0.2em;
+    float: left;
+    margin-top: 2%;
 
 }
+
 
 .post-full-content p code {
     word-break: break-all;
@@ -1498,15 +1505,6 @@ Usage (In Ghost editor):
 /* 7.1. Post Byline
 /* ---------------------------------------------------------- */
 
-.post-full-byline {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0 0;
-    /* padding-top: 15px; */
-    padding-left: 170px;
-    padding-right: 170px;
-    /* border-top: 1px solid color(var(--lightgrey) l(+10%)); */
-}
 
 .post-full-byline-content {
     flex-grow: 1;
@@ -1651,7 +1649,7 @@ Usage (In Ghost editor):
     opacity: 0.15;
 }
 
-@media (max-width: 1170px) {
+@media (max-width: 2000px) {
     .author-list-item .author-card {
         margin-left: -50px;
         width: 430px;
@@ -1660,11 +1658,90 @@ Usage (In Ghost editor):
     .author-list-item .author-card:before {
         left: 50px;
     }
+
+    .post-full-byline {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2%;
+        margin-left: 45%;
+        /* padding-top: 15px;
+        padding-left: 170px;
+        padding-right: 170px; */
+        /* border-top: 1px solid color(var(--lightgrey) l(+10%)); */
+    }
+
+    
+}
+
+@media (max-width: 1170px) {
+    .author-list-item .author-card {
+        display: none;
+    }
+
+    .post-full-byline {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 4%;
+        margin-left: 45%;
+        /* padding-top: 15px;
+        padding-left: 170px;
+        padding-right: 170px; */
+        /* border-top: 1px solid color(var(--lightgrey) l(+10%)); */
+    }
+
+}
+
+@media (max-width: 800px) {
+    .author-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .post-full-byline-meta {
+        font-size: 1.2rem;
+    }
+
+    .post-full-byline-meta h4 {
+        margin-bottom: 2px;
+        font-size: 1.2rem;
+    }
+
+    .post-full-byline {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 4%;
+        margin-left: 42%;
+        /* padding-top: 15px;
+        padding-left: 170px;
+        padding-right: 170px; */
+        /* border-top: 1px solid color(var(--lightgrey) l(+10%)); */
+    }
 }
 
 @media (max-width: 650px) {
-    .author-list-item .author-card {
-        display: none;
+    .author-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .post-full-byline-meta {
+        font-size: 1.2rem;
+    }
+
+    .post-full-byline-meta h4 {
+        margin-bottom: 2px;
+        font-size: 1.2rem;
+    }
+
+    .post-full-byline {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5%;
+        margin-left: 40%;
+        /* padding-top: 15px;
+        padding-left: 170px;
+        padding-right: 170px; */
+        /* border-top: 1px solid color(var(--lightgrey) l(+10%)); */
     }
 }
 
@@ -1681,6 +1758,17 @@ Usage (In Ghost editor):
     .post-full-byline-meta h4 {
         margin-bottom: 2px;
         font-size: 1.2rem;
+    }
+
+    .post-full-byline {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6%;
+        margin-left: 38%;
+        /* padding-top: 15px;
+        padding-left: 170px;
+        padding-right: 170px; */
+        /* border-top: 1px solid color(var(--lightgrey) l(+10%)); */
     }
 }
 
@@ -2956,8 +3044,8 @@ Usage (In Ghost editor):
     }
 
     .post-full-content code {
-        color: #fff;
-        /* background: #000; */
+        background-color: rgb(40, 42, 54);
+        color: rgb(255, 255, 255);
     }
 
     hr {
@@ -3052,4 +3140,20 @@ Usage (In Ghost editor):
     .subscribe-form .success .message-success {
         color: color(var(--green) l(+5%) s(-5%));
     }
+
+    .tag-name {
+        background-color: var(--darkmode);
+        color: rgb(255, 255, 255);
+        font-size: 1em;
+        border-radius: 3px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-right: 0.2em;
+        float: left;
+        margin-top: 2%;
+    
+    }
+    
 }

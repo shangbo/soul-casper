@@ -1224,6 +1224,7 @@ Usage (In Ghost editor):
     /* line-height: 0.2em; */
     /* background: color(var(--darkgrey) l(-3%)); */
     border-radius: 5px;
+    background-color: #272f33;
 }
 
 .post-full-content pre ::selection {
@@ -2918,6 +2919,17 @@ Usage (In Ghost editor):
     .site-footer-nav a:first-child {
         margin-left: 0;
     }
+}
+
+
+.post-full-content p{
+    letter-spacing: 1.2px;
+    line-height: 30px;
+    
+}
+
+.post-full-content li{
+    letter-spacing: 1.2px;
 }
 
 

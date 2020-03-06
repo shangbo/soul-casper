@@ -32,9 +32,11 @@
             <div class="site-footer-content inner">
                 <section class="copyright"><a href="{{@site.url}}">{{@site.title}}</a> &copy; {{date format="YYYY"}}
                 </section>
+                
                 <nav class="site-footer-nav">
-                    <a href="{{@site.url}}">Latest Posts</a>
+                    
                     <a href="">浙ICP备19047983号-1</a>
+                    <div id='cnzz'></div>
                     {{!-- <a href=""></a> --}}
                     {{!-- {{#if @site.facebook}}<a href="{{facebook_url @site.facebook}}" target="_blank"
                         rel="noopener">Facebook</a>{{/if}}
@@ -91,7 +93,6 @@
         </script>
     {{!-- Fitvids (for responsive video embeds), infinite scroll, floating header, and gallery card support --}}
     <script src="{{asset "built/casper.js"}}"></script>
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278592414'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278592414%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
     {{!-- Scripts for Members subscription --}}
     <script>
         // Parse the URL parameter
@@ -135,7 +136,9 @@
                 hljs.highlightBlock(block);
             });
 
-
+            var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+            $('#cnzz').append("<span id='cnzz_stat_icon_1278592414'></span>");
+            $('#cnzz').append("<script src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php?id=1278592414&show=pic2' type='text/javascript'>");
         });
     </script>
 

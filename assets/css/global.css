@@ -131,8 +131,8 @@ img {
 }
 html {
     box-sizing: border-box;
-    font-family: Helvetica, sans-serif;
-
+    font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
+    
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
@@ -190,7 +190,7 @@ code,
 kbd,
 pre,
 samp {
-    font-family: Helvetica, monospace, monospace;
+    font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
     font-size: 1em;
 }
 button,
@@ -282,7 +282,7 @@ html {
 body {
     overflow-x: hidden;
     color: color(var(--midgrey) l(-30%));
-    font-family: Helvetica, sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
     font-size: 1.6rem;
     line-height: 1.6em;
     font-weight: 400;
